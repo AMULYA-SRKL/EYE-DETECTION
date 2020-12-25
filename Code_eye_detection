@@ -32,5 +32,5 @@ def detect_eyes(fix_img):
  
  
 #TO DISPLAY THE FINAL IMAGE WITH EYES DETECTED
-result=detect_faces_eyes(fix_img)
+result=detect_eyes(fix_img)
 plt.imshow(result)
