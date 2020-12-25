@@ -1,0 +1,36 @@
+#TO UPLOAD HAARASCADE FILE IN COLAB
+from google.colab import files
+file=files.upload()
+
+#TO UPLOAD THE PICTURE
+from google.colab import files
+file=files.upload()
+
+#REQUIRED LIBRARIES
+import numpy as np
+import cv2 
+from matplotlib import pyplot as plt
+
+#FOR ACCESSING THE HAARASCADE FILE
+eye_classifier=cv2.CascadeClassifier('haarcascade_eye.xml')
+
+#TO DISPLAY THE IMAGE
+image=cv2.imread('chrisevans.png')
+fix_img=cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
+plt.imshow(fix_img)
+
+
+#SETTING THE SIZE AND COLOUR OF THE RECTANGLE BOXES
+def detect_eyes(fix_img):
+    eye_rects=eye_classifier.detectMultiScale(fix_img)
+    for (ix,iy,iw,ih) in eye_rects:
+        cv2.rectangle(fix_img,
+                     (ix,iy),
+                     (ix+iw,iy+ih),
+                     (0,0,0),7)
+    return fix_img
+ 
+ 
+#TO DISPLAY THE FINAL IMAGE WITH EYES DETECTED
+result=detect_faces_eyes(fix_img)
+plt.imshow(result)
